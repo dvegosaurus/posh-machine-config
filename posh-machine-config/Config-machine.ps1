@@ -14,17 +14,19 @@ foreach ($item in $itemtoapply)
 {
     switch ($item.type)
     {
-        "service"  {config-service $item.name $item.StartType}
+        "service"   {config-service $item.name $item.StartType}
         "registry" 
-        {
-            if ($item.value){config-regvalue -path $item.path -name $item.name -value $item.value -action $item.action}
-            else {config-regvalue -path $item.path -name $item.name -action $item.action}
-             if ($item.action -match "create"){config-regvalue -path $item.path -name $item.name -value $item.value -action $item.action -regtype $item.regtype}
-        }
-        "folder"  {config-folder  -path $item.path -action $item.action }
+                    {
+                        if ($item.value){config-regvalue -path $item.path -name $item.name -value $item.value -action $item.action}
+                        else {config-regvalue -path $item.path -name $item.name -action $item.action}
+                        if ($item.action -match "create"){config-regvalue -path $item.path -name $item.name -value $item.value -action $item.action -regtype $item.regtype}
+                    }
+        "folder"    {config-folder  -path $item.path -action $item.action }
+        "file"      {config-file    -path $item.path -action $item.action }
 
     }
 }
 
 
 
+pause

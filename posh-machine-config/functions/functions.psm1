@@ -75,3 +75,25 @@ function config-folder
         "create"  {if (!(Test-Path $path)){New-Item $path -ItemType Directory}}
     }
 } # config-folder 
+
+function config-file 
+{
+    [cmdletbinding()]
+    param(
+        [parameter(mandatory=$true,position=0)]
+        [string]$path,
+        [Validateset('clear','delete','rename','create')]
+        [parameter(mandatory=$true,position=1)]
+        [string]$action
+    )
+
+    switch ($action)
+    {
+        "rename"  {if (!(Test-Path $path)){Rename-Item $path $name }}
+        "clear"   {Set-Content -Path $path -Value ''}
+        "delete"  {Remove-Item  -Path $path -Force}
+        "create"  {if (!(Test-Path $path)){New-Item $path -ItemType File}}
+    }
+} # config-folder 
+
+
