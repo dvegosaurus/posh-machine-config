@@ -1,9 +1,15 @@
 ﻿$confpath = "$PSScriptRoot\conf\testconf.conf"
+Import-Module "$PSScriptRoot\functions\functions.psm1"
 
+
+# load the test configuration
 $list = Get-Content $confpath | ConvertFrom-Json
 
+
+# select item tagged as apply
 $itemtoapply = $list | where {$_.apply -or $_.apply -eq $null}
 
+# foreach item execute the proper function to configure it
 foreach ($item in $itemtoapply)
 {
     switch ($item.type)
@@ -20,6 +26,5 @@ foreach ($item in $itemtoapply)
     }
 }
 
-# test for git sync 2
 
 
