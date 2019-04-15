@@ -20,6 +20,6 @@ foreach ($item in $itemtoapply)
     }
 }
 
-# test for git sync
+# test for git sync 2
 
 
