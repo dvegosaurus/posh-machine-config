@@ -26,7 +26,3 @@ foreach ($item in $itemtoapply)
 
     }
 }
-
-
-
-pause
